@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.lang.annotation.Retention;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class VegetableServiceImpl implements VegetableService{
@@ -25,7 +26,12 @@ public class VegetableServiceImpl implements VegetableService{
 
     @Override
     public Vegetable getById(long id) {
-        return vegetableRepository.getById(id);
+        Optional<Vegetable> foundVegetable = vegetableRepository.findById(id);
+        if(foundVegetable.isPresent()) {
+            return foundVegetable.get();
+        }
+
+        return null;
     }
 
     @Override

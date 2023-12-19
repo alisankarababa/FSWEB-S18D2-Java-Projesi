@@ -9,17 +9,13 @@ import java.util.List;
 
 public interface FruitRepository extends JpaRepository<Fruit, Long> {
 
-    @Query(value = "SELECT s.id, s.name, s.price, s.fruit_type " +
-            "FROM fsweb-s18d2.fruit as s" +
-            "ORDER BY s.price", nativeQuery = true)
+    @Query(value = "SELECT s.id, s.name, s.price, s.fruit_type FROM \"fsweb-s18d2\".fruit as s ORDER BY s.price", nativeQuery = true)
     List<Fruit> getAllAscendingPrice();
-    @Query(value = "SELECT s.id, s.name, s.price, s.fruit_type " +
-            "FROM fsweb-s18d2.fruit as s" +
-            "ORDER BY s.price DESC", nativeQuery = true)
+    @Query(value = "SELECT s.id, s.name, s.price, s.fruit_type FROM \"fsweb-s18d2\".fruit as s ORDER BY s.price DESC", nativeQuery = true)
     List<Fruit> getAllDescendingPrice();
 
     @Query(value = "SELECT s.id, s.name, s.price, s.fruit_type " +
-            "FROM fsweb-s18d2.fruit as s" +
+            "FROM \"fsweb-s18d2\".fruit as s " +
             "WHERE s.name ILIKE %:string%", nativeQuery = true)
     List<Fruit> getAllContainintStringInTheName(String string);
 }
